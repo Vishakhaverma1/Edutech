@@ -5,7 +5,8 @@ import {dbConnection} from "./database/dbConnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import userRouter from "./routes/user.js";
 import paymentRoute from "./routes/paymentRoutes.js";
-
+import courseRoute from "./routes/course.js"
+import collegeRoute from "./routes/college.js";
 const app = express();
 dotenv.config({path : "./config/config.env"});
 
@@ -29,8 +30,18 @@ app.get("/", (req, res, next)=>{return res.status(200).json({
 dbConnection();
 
 app.use("/api", paymentRoute);
+app.use("/course", courseRoute);
+app.use('/college', collegeRoute)
 
 app.get("/api/getkey", (req, res) =>
+  res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
+);
+
+app.get("/course/getkey", (req, res) =>
+  res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
+);
+
+app.get("/college/getkey", (req, res) =>
   res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
 );
 

@@ -27,17 +27,17 @@ export const addUser = async(req,res,next)=>{
 
 export const sendMsg = async(req,res,next)=>{
 
-        const{name,email,subject,msg} = req.body;
+        const{name,email,number,course ,specialization} = req.body;
         console.log(req.body);
         try{
-        await msgModel.create({name,email,subject,msg});
+        await msgModel.create({name,email,number,course,specialization});
         res.status(200).json({
             success :true,
             message : "Sent Successfully ! ",
         });
        
     }catch(error){
-        if(error.name === "validationError"){
+        if(error.name === "ValidationError"){
             const validationErrors = Object.values(error.errors).map(
             (err)=> err.message
         );

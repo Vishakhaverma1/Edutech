@@ -11,13 +11,17 @@ const msgSchema =new mongoose.Schema({
         required : true,
         validate: [validator.isEmail,"Provide a valid email !"],
     },
-    subject:{
+    number:{
         type : String,
+        required : true,
     },
-    msg :{
+    course :{
         type : String ,
         required : true
     },
+    specialization : {
+        type : String,
+    }
     
 });
 
